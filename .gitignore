@@ -1,2 +1,5 @@
 .idea/
-/app/node_modules
+app/node_modules
+app/deploy
+app/build
+jenkins-data

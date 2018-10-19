@@ -1,17 +1,17 @@
-Con este comando nos ha permitido mastrar todos los archivos pesados
-> `git rev-list --objects --all ` 
+* Con este comando nos ha permitido mastrar todos los archivos pesados
+    > `git rev-list --objects --all ` 
 
-Se ha filtrado el archivo pesado que se proponia eliminar de los objetos de git
-> `git filter-branch --index-filter 'git rm --cached --ignore-unmatch sc.16.tar.gz' -- --all`
+* Se ha filtrado el archivo pesado que se proponia eliminar de los objetos de git
+    > `git filter-branch --index-filter 'git rm --cached --ignore-unmatch sc.16.tar.gz' -- --all`
 
-Eliminar la carpeta refs original que se generó
-> `rm -Rf .git/refs/original`
+* Eliminar la carpeta refs original que se generó
+    > `rm -Rf .git/refs/original`
 
-Eliminar la carpeta logs que se generó
-> `rm -Rf .git/logs/`
+* Eliminar la carpeta logs que se generó
+    > `rm -Rf .git/logs/`
 
-Ejecutamos el comando para empaquetar y reconstruir los objetos segun los cambios actuales con el --prune=now
-> `git gc --aggressive --prune=now`
+* Ejecutamos el comando para empaquetar y reconstruir los objetos segun los cambios actuales con el --prune=now
+    > `git gc --aggressive --prune=now`
 
 
 1. ¿Qué importancia tiene los tags en un proyecto?
@@ -97,3 +97,140 @@ Exponiendo puerto 80 a través del puerto 1080
 gst    > `con la separacion de dos puntos ":", el primer puerto hace referencia al puerto del host y el segundo puerto hace referencia al contenedor`
 4. ¿Cómo hago 'forward' al levantar un contenedor (docker run)?
     > `con el flag -p "8080:80"`
+
+---
+
+1. ¿Qué significa el comando -d?
+    > Nos sirve para validar si existe un directorio en la sentencia if
+2. ¿Porqué la sentencia comienza con @?
+    > Para evitar imprimir el comando en consola
+3. ¿Para qué sirve el comando mkdir?
+    > Para crear un directorio
+4. Explicar lo que hace la función mkdir_deploy_dir
+    > En base a la sentencia if verifica si no existe el directorio, si no existe la crea con el comando mkdir
+
+---
+
+
+1. ¿Para qué sirve el uso de \?
+    > Nos da un salto de linea
+2. ¿Para qué sirve el uso de &&?
+    > Para ejecutar otro comando despues del anterior
+3. ¿Qué función cumple usar los argumentos -rf?
+    > Para eliminar recursivo y forzado
+4. Explicar lo que hace la función git_init (linea por linea)
+    > Entra al directorio ./deploy/gh-pages, elimina el directorio .git y luego inicializa un nuevo proyecto con git
+
+---
+
+1. ¿Para qué sirve el uso de eval?
+    > Evalua y ejecuta un comando de makefile   
+2. ¿Para qué sirve el uso de shell?
+    > Nos permite ejecutar comandos de shell dentro del entorno de make
+3. ¿Para qué sirve el uso de git log --pretty=format:"%an"?
+    > Nos permite dar un formato de salida del log, y filtrar por el raw format el author de los commits
+4. ¿Cuál es la diferencia en usar git config y git config --global?
+    > Con git config nos permite manejar configurariones locales y con --global es configurariones del git 
+5. Explicar lo que hace la función git_config (línea por línea)
+    > Ejecuta mediante shell el comando git log filtrando por author, obteniendo el primer resultado con el comando head
+      y lo almacena en la variable GIT_USER_NAME, ejecuta mediante shell el comando git log filtrando por el email del author,
+      obteniendo el primer resultado y guarda en la variable GIT_USER_EMAIL, luego ingresa al directorio ./deploy/gh-pages,
+      luego se ejecuta el ccomando git config y se añade el nombre del usuario al repositorio  y luego añade el correo
+      
+---
+
+
+1. ¿Para qué sirve el uso de awk?
+    > Esta imprimiendo las primeras dos columnas en base a la salida del comando grep
+2. ¿Para qué sirve el uso de sed?
+    > Para poder reemplazar una cadena sobre coincidencias pasadas respecto al primer parametro
+3. ¿Para qué sirve el uso de git log --pretty=format:"%an"?
+    > Para mostrar el log del repositorio con el formato '%an' que es por el nombre del autor
+4. Explicar lo que hace la función git_add_remote_repository
+    > Lista el los repositorios remotos, filtra por el nombre 'origin', filtra por el nombre '(push)',
+      con awk muestra po consola las dos primeras columnas de cada linea y guarda el contenido en la
+      variable REPOSITORY. Imprime la variable REPOSITORY y el segundo pipe que es el comando 'send' realiza
+      con la bandera 's' un reemplazo del segundo parametro sobre el primer parametro y la bandera 'g'
+      especifica que se aplicara a todas las coinidencias encontradas, luego con el comando cd se 
+      ingresa al directorio ./deploy/gh-pages y añade la url de la variable GIT_REPOSITORY_REMOTE en el 
+      listado de repositorios remotos "origin"
+      
+---
+
+1. Explicar lo que hace la función create_branch_gh_pages
+    > Ingresa al directorio ./deploy/gh-pages, crea la rama "gh-pages" y se posiciona sobre ella
+
+---
+
+1. Explicar lo que hace la función copy_files_to_deploy
+    > Copia recursivimante (archivos y directorios) del directorio ./deploy/build/* al directorio ./deploy/gh-pages
+
+---
+
+1. Explicar lo que hace la función git_add
+    > Se posiciona sobre el directorio ./deploy/gh-pages, añade cambios al stage de git y verifa el estado de
+      los archivos agregados al stage
+---
+
+1. Explicar lo que hace la función create_commit (línea por línea)
+    > Se ejecuta el comando git log filtrando por el formato del mensaje, se obtiene la primera linea,
+      y se almacena sobre la variable MESSAGE, luego se posiciona sobre el directorio ./deploy/gh-pages
+      y se crea un commit con el mensaje de la variable MESSAGE
+
+---
+
+1. Explicar lo que hace la función git_push (línea por línea)
+    > Se posiciona sobre el directorio ./deploy/gh-pages y envia cambios al repositorio de manera forzada de la rama gh-pages
+
+---
+
+1. Explicar lo que hace la función clean_workspace
+    > Elimina recursivamente y forzado el directorio ./deploy/gh-pages
+
+---
+
+1. ¿Para qué sirve el uso de ifeq?
+    > Para condicionar e igualar dos argumentos que se les pasa
+2. ¿Para qué sirve el uso de strip?
+    > Para limpiar espacios enetre las cadenas y convertirlos a un solo espacio
+3. Explicar lo que hace la función show_deploy_url (línea por línea)
+    * almacenar la url del repositorio en la variable GIT_REPOSITORY_REMOTE
+    * validar y almacenar la url ssh del repositorio en la variable GIT_REPOSITORY_REMOTE_SSH
+    
+---
+
+1. ¿Qué hace cada paso?
+    > Ejecuta funciones descritas en el archivo make deploy-ghpages.mk
+
+---
+
+1. ¿Que sucede si no volumeo el docker.sock?
+    > Que al momento de crear un pipleline y crear un docker en base a un Jenkinsfile,
+      no se creará porque el contenedor Jenkins no esta escuchando al sock de Docker 
+2. ¿Para que sirve el volumen var/jenkins_home?
+    > Para poder almacenar las configuraciones y tareas en la maquina anfitriony no perderlas al momento de reiniciar el sock
+3. ¿Puedo cambiar de puerto?
+    > El puerto del anfitrion si, pero no el puerto del jenkins
+4. ¿Que pasa si no utlizo el usuario root?
+    > Jenkins no va a comunicarse con el sock de Docker
+5. ¿Còmo instalo make en una imagen?
+    > 
+
+---
+
+
+1. ¿Se puede crear un volúmen desde otro volúmen en docker? ¿Porqué?
+    > Si, con el comando --volumen-from
+2. ¿Para que sirve el comando docker create -v <dir> --name <container> <image>?
+    >
+3. ¿Qué hace el comando docker cp ./ <container>:<dir>?
+    > Copiar un directorio o archivos hace un contenedr
+4. ¿Cómo creo una network usando docker run?
+    > 
+5. ¿Cómo conecto una network a un container? usando docker run
+    > con el flag --network="NAME NETWORK"
+6. ¿Qué hace docker run -it --rm --volumes-from <container> -w <dir> <image> <command>?
+    * it: forma interactiva
+    * --rm: Elimina si existe el contenedor y crea uno nuevo
+    * --volumnes-from: Monta directorio desde un contenedor a otro contenedor
+

@@ -15,4 +15,8 @@
 * Variables ENV   
     > docker run -v $PWD/resources:/resources -e NAME="Harry Potter" node:10.10.0-slim bash /resources/example.sh
 * Mostrando mensaje de ejecucion
-    > docker run --entrypoint=/bin/echo node:10.10.0-slim "Ejecutando contenedor..." 
+    > docker run --entrypoint=/bin/echo node:10.10.0-slim "Ejecutando contenedor..."
+    
+* docker build -t marlonric/jenkins-deploy:0.1.0 docker/jenkins
+* docker run --rm -u root -p 8080:8080 -v jenkins-data:/var/jenkins_home marlonric/jenkins-deploy:0.1.0
+* docker run --rm -u root -p 8080:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock marlonric/jenkins-deploy:0.1.0     

@@ -23,7 +23,7 @@
 2. ¿Cómo ejecuto un archivo bash?
     > con el comando bash o con ./name_file.sh (con permisos de ejecucio)
 3. ¿Qué pasa si no especifico en un `.sh`, la linea `#!/bin/bash`?
-    > El interprete no ejecuta linea por linea correctamente
+    > El interprete no ejecuta linea por linea correctamente, la primera le indica al sistema que programa usar para ejecutar el fichero
 4. ¿Se puede cambiar el modo bash (`/bin/bash`) a otro tipo de ejecución?
     > Si, a python, php entre otros, especificando el comando a ejecutar
 5. ¿Cómo se envía variables de entorno por Docker CLI y docker-compose?

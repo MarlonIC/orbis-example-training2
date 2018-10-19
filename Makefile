@@ -1,4 +1,6 @@
-include Makefile-task.mk
+include makefiles/task.mk
+include makefiles/deploy-ghpages.mk
+include test.mk
 
 export NAME ?= Harry Potter local
 NAME_IMAGE ?= marlonric/orbis-training-docker
@@ -14,8 +16,10 @@ release:
 greet:
 	@docker run -v ${PWD}/resources:/resources -e NAME="${NAME}" node:10.10.0-slim bash /resources/example.sh
 	@bash ./resources/example.sh
+curl:
+	@docker run --network="orbis-training-project_default" node:10.10.0-slim curl http://orbis-training-docker:1042
 resources:
 	@echo "Hola arecursos!"
 	@echo ${DOCKER_IMAGE}
 
-.PHONY: resources
+.PHONY: resources curl greet release start install
