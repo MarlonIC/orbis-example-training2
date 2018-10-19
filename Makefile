@@ -9,7 +9,7 @@ DOCKER_IMAGE ?= ${NAME_IMAGE}:${DOCKER_TAG}
 DOCKER_VOLUME = ${PWD}/app:/app
 
 project-workspace:
-	@docker run -v $PWD/app:/app --entrypoint=/bin/ls marlonric/orbis-training-docker:2.0.0 -l /app
+	@echo "testing"
 install:
 	@docker run --workdir=/app -v ${DOCKER_VOLUME} ${DOCKER_IMAGE} npm install
 start:
