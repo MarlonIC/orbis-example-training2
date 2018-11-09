@@ -12,7 +12,7 @@ DOCKER_VOLUME = ${PWD}/app:/app
 
 project-workspace:
 	docker create --rm -v /app/ --name workspace alpine
-	docker cp ./ workspace:/app
+	docker cp ./app workspace:/app
 
 install:
 	#@docker run --workdir=/app -v ${DOCKER_VOLUME} ${DOCKER_IMAGE} npm install
