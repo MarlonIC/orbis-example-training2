@@ -16,20 +16,20 @@ project-workspace:
 
 install:
 	#@docker run --workdir=/app -v ${DOCKER_VOLUME} ${DOCKER_IMAGE} npm install
-	docker run --rm --volumes-from workspace -w /app $(DOCKER_IMAGE) npm install
+	docker run --volumes-from workspace -w /app $(DOCKER_IMAGE) npm install
 
 start:
 	#docker run -p "3030:1042" -p "35729:35729" --workdir=/app -v ${DOCKER_VOLUME} ${DOCKER_IMAGE} npm start
-	docker run --rm -d --volumes-from workspace -w /app -p 1042:1042 -p 35729:35729 $(DOCKER_IMAGE) npm start
+	docker run -d --volumes-from workspace -w /app -p 1042:1042 -p 35729:35729 $(DOCKER_IMAGE) npm start
 
 release:
 	#docker run --workdir=/app -v ${DOCKER_VOLUME} ${DOCKER_IMAGE} npm run release
-	docker run --rm --volumes-from workspace -w /app $(DOCKER_IMAGE) npm run release
+	docker run --volumes-from workspace -w /app $(DOCKER_IMAGE) npm run release
 
 greet:
 	#@docker run -v ${PWD}/resources:/resources -e NAME="${NAME}" node:10.10.0-slim bash /resources/example.sh
 	#@bash ./resources/example.sh
-	@docker run --rm --volumes-from workspace -w /app --entrypoint ./resources/example.sh -e NAME="${NAME}" $(DOCKER_IMAGE)
+	@docker run --volumes-from workspace -w /app --entrypoint ./resources/example.sh -e NAME="${NAME}" $(DOCKER_IMAGE)
 
 curl:
 	@docker run --network="orbis-training-project_default" node:10.10.0-slim curl http://orbis-training-docker:1042
