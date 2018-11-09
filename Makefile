@@ -12,7 +12,7 @@ DOCKER_VOLUME = ${PWD}/app:/app
 
 project-workspace:
 	docker create --rm -v /app/ --name workspace alpine
-	docker cp ./app workspace:/app
+	docker cp ${PWD}/app workspace:/app
 
 install:
 	#@docker run --workdir=/app -v ${DOCKER_VOLUME} ${DOCKER_IMAGE} npm install
@@ -24,7 +24,7 @@ start:
 
 release:
 	#docker run --workdir=/app -v ${DOCKER_VOLUME} ${DOCKER_IMAGE} npm run release
-	docker run --rm --volumes-from workspace -w /app $(DOCKER_IMAGE) npm run release
+	docker run --rm --volumes-from workspace $(DOCKER_IMAGE) npm run release
 
 greet:
 	#@docker run -v ${PWD}/resources:/resources -e NAME="${NAME}" node:10.10.0-slim bash /resources/example.sh
