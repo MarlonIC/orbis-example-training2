@@ -11,8 +11,8 @@ DOCKER_IMAGE ?= ${NAME_IMAGE}:${DOCKER_TAG}
 DOCKER_VOLUME = ${PWD}/app:/app
 
 project-workspace:
-	docker create -v /app/ --name workspace alpine
-	docker cp ./app workspace:/app
+	docker create --rm -v /app/ --name workspace alpine
+	docker cp ./ workspace:/app
 
 install:
 	#@docker run --workdir=/app -v ${DOCKER_VOLUME} ${DOCKER_IMAGE} npm install
