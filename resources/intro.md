@@ -19,4 +19,5 @@
     
 * docker build -t marlonric/jenkins-deploy:0.1.0 docker/jenkins
 * docker run --rm -u root -p 8080:8080 -v jenkins-data:/var/jenkins_home marlonric/jenkins-deploy:0.1.0
-* docker run --rm -u root -p 8080:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock marlonric/jenkins-deploy:0.1.0     
+* Para levantar el jenkis usar el siguiente comando
+    * docker run --rm -u root -p 8080:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock marlonric/jenkins-deploy:0.1.0     
