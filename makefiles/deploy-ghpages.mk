@@ -1,10 +1,11 @@
 .PHONY: deploy.ghpages
 
-DEPLOY_DIR = app/deploy
+DEPLOY_DIR = deploy
 BUILD_DIR = build
 GIT_BRANCH = gh-pages
 GIT_PERSONAL_TOKEN = 146fd61fe08925c5f23920619683eff8824845b9
 GIT_BRANCH_DIR = $(PWD)/$(DEPLOY_DIR)/$(GIT_BRANCH)
+
 
 define mkdir_deploy_dir
 	@if [ ! -d "$(GIT_BRANCH_DIR)" ]; then mkdir $(GIT_BRANCH_DIR); fi
