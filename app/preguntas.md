@@ -234,3 +234,29 @@ gst    > `con la separacion de dos puntos ":", el primer puerto hace referencia 
     * --rm: Elimina si existe el contenedor y crea uno nuevo
     * --volumnes-from: Monta directorio desde un contenedor a otro contenedor
 
+---
+
+
+1. ¿Qué significa el argumento s3?
+    > Argumento para espeficiar el servicio de aws a usar
+2. ¿Qué significa el argumento --delete?
+    > Si en caso existe el bucket, elimina su contenido y vuelve a crear
+3. ¿Qué significa el argumento --acl?
+    > Provee permisos para el bucket
+4. ¿Qué significa el argumento --region?
+    > Se especifica la region donde se va a crear el bucket
+5. ¿Para qué sirve el comando aws?
+    > Para administrar los servicios de AWS mediante consola
+6. Explicar lo que hace la función deploy_bucket
+    > Sincroniza la carpeta local ./deploy/build en el bucket dev--orbis-training/marlon.inga, si existe el bucket lo elimina, luego crea el repositorio publico con el permiso de lectura, crea el bucket en la region eu-west-1   
+
+---
+
+1. Explicar lo que hace la función show_deploy_url
+    > Muestra la url donde se ha desplegado el proyecto
+    
+---
+1.- ¿Qué hace cada paso?
+    * Se ejecuta la funcion deploy_bucket 
+    * Se ejecuta la funcion show_deploy_url
+    

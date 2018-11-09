@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Build') {
             steps {
                 sh 'make project-workspace'
@@ -10,7 +15,6 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'make start'
-                sh 'make curl'
             }
         }
         stage('Deploy') {
