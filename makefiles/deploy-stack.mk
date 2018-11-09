@@ -6,15 +6,13 @@ STACK_NAME        	?= ${PROJECT_NAME}
 TEMPLATE_FILE      	 = ./cloudformation/sam.yaml
 LAMBDA_BUCKET_NAME 	 = ${INFRA_BUCKET}
 LAMBDA_BUCKET_KEY	 = build/lambda/${ENV}/${PROJECT_NAME}.zip
-DEPLOY_REGION   	?= eu-west-1
-DEPLOY_USER_NAME 	 = 'marlon.inga'
+DEPLOY_REGION   	?= ap-northeast-1
+DEPLOY_USER_NAME 	 = marlon.inga
 
 
 stack.deploy: ## Desplegar stack cloudformation: make deploy.stack
 	@echo "Deploy stack cloudformation..."
-	#$(call get_user_name)
-	aws cloudformation deploy \
-		--template-file $(TEMPLATE_FILE) \
+	aws cloudformation deploy --template-file $(TEMPLATE_FILE) \
 		--stack-name $(STACK_NAME) \
 		--parameter-overrides \
 			Owner=$(OWNER) \

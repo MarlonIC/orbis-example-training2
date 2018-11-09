@@ -1,11 +1,11 @@
 .PHONY: deploy.aws
 
 ENV             ?= dev
-DEPLOY_DIR       = deploy
+DEPLOY_DIR       = app/deploy
 BUILD_DIR        = build
-DEPLOY_REGION   ?= eu-west-1
+DEPLOY_REGION   ?= ap-northeast-1
 DEPLOY_BUCKET    = $(ENV)-orbis-training
-DEPLOY_USER_NAME = 'marlon.inga'
+DEPLOY_USER_NAME = marlon.inga
 
 define deploy_bucket
     @aws s3 sync \
@@ -27,4 +27,3 @@ deploy.aws: ## Desplegando bucket.: make deploy.aws
 	@echo "Desplegando cambios al bucket: $(DEPLOY_BUCKET)"
 	$(call deploy_bucket)
 	$(call show_deploy_url)
-
