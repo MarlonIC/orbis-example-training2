@@ -11,7 +11,7 @@ DOCKER_IMAGE ?= ${NAME_IMAGE}:${DOCKER_TAG}
 DOCKER_VOLUME = ${PWD}/app:/app
 
 project-workspace:
-	docker create -v /app/ --name workspace alpine --rm
+	docker create -v /app/ --rm --name workspace alpine
 	docker cp ${PWD}/app workspace:/app
 
 install:
