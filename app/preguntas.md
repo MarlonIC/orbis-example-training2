@@ -256,7 +256,63 @@ gst    > `con la separacion de dos puntos ":", el primer puerto hace referencia 
     > Muestra la url donde se ha desplegado el proyecto
     
 ---
-1.- ¿Qué hace cada paso?
+1. ¿Qué hace cada paso?
     * Se ejecuta la funcion deploy_bucket 
     * Se ejecuta la funcion show_deploy_url
-    
+ 
+---
+1. Explicar lo que hace el target stack.deploy
+    > Ejecuta la funcion get_user_name, el argumento cloudformation nos crea una infraestructura para una applicacion,
+    el flag template-file crea la infraestructura de acuerdo a un archivo template,
+    el flag --stack--name define un nombre al stack,
+    el flag --parameter-override define los parametros de configuracion para los servicios,
+    el flag --capabilities 
+    el flag --region define donde se va desplegar la infraestructura
+
+---
+1. Explicar lo que hace el target stack.delete
+    > elimina un stac pasando como parametros el nombre del stack y la region en la que se encuentra
+---
+1. Explicar lo que hace esta sección de cloudformation
+    > En Mappings define variables enviroment dev, pre y prod con sus respectivas regiones
+    En Parameteres se definen al propietario, el nombre del servicio, las variables env para las regiones,
+    el nombre del usuario, el nombre del bucket donde se almacena el zip del codigo lambda y el path del bucket
+    s3 donde tambien se almacena el zip del codigo lambda. Y conditions se realizacon condiciones
+    como IsProd: !Equals ["prod", !Ref Environment]
+---
+1. Explicar lo que hace el tipo de recurso AWS::DynamoDB::Table
+    > 
+---
+1. Explicar lo que hace el tipo de recurso AWS::ApiGateway::RestApi
+    >
+---
+1. Explicar lo que hace el tipo de recurso AWS::IAM::Role
+    >
+---
+1. Explicar lo que hace el tipo de recurso AWS::Serverless::Function
+    >
+2. ¿Porqué se usa la sección Environment y en que casos se recomienda usarla?
+    >
+---
+1. Explicar lo que hace el tipo de recurso AWS::Lambda::Permission
+    >
+---
+1. Explicar lo que hace el tipo de recurso AWS::ApiGateway::Stage
+    >
+---
+1. Explicar lo que hace el tipo de recurso AWS::ApiGateway::Deployment
+    >
+---
+1. Explicar lo que hace el tipo de recurso AWS::ApiGateway::Resource
+    >
+---
+1. Explicar lo que hace el tipo de recurso AWS::ApiGateway::Method
+    >
+2. ¿Porqué se usa DependsOn?
+    >
+---
+1. Explicar lo que hace la sección Outputs
+    >
+---
+1. Explicar por que se debe hacer el Deploy API.
+    >

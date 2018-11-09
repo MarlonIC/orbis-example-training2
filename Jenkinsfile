@@ -25,5 +25,12 @@ pipeline {
                 sh 'make deploy.ghpages'
             }
         }
+        parameters {
+            choice(
+                name: 'DEPLOY',
+                choices: ["gh-page","aws"],
+                description: "Ambiente de despliegue"
+            )
+        }
     }
 }

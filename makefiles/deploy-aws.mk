@@ -24,6 +24,7 @@ endef
 
 
 deploy.aws: ## Desplegando bucket.: make deploy.aws
-    @echo "Desplegando cambios al bucket: $(DEPLOY_BUCKET)"
-    $(call deploy_bucket)
-    $(call show_deploy_url)
+	@echo "Desplegando cambios al bucket: $(DEPLOY_BUCKET)"
+	$(call deploy_bucket)
+	$(call show_deploy_url)
+

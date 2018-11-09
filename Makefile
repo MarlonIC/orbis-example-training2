@@ -1,6 +1,7 @@
 include makefiles/task.mk
 include makefiles/deploy-ghpages.mk
 include makefiles/deploy-aws.mk
+include makefiles/deploy-stack.mk
 include test.mk
 
 export NAME ?= Harry Potter local
