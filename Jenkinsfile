@@ -2,6 +2,14 @@
 
 pipeline {
     agent any
+
+    parameters {
+        choice(
+        name: 'DEPLOY',
+        choices: ["gh-page","aws"],
+        description: "Ambiente de despliegue"
+        )
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -24,13 +32,6 @@ pipeline {
                 sh 'make release'
                 sh 'make deploy.ghpages'
             }
-        }
-        parameters {
-            choice(
-                name: 'DEPLOY',
-                choices: ["gh-page","aws"],
-                description: "Ambiente de despliegue"
-            )
         }
     }
 }
